@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+        <meta charset="utf-8">
+        <title>qq-job</title>
+</head>
+<body>
+{% extends "base.html" %}
+{% block content %}
+
+
+
+    <style>
+        .main_page_problems_categories_cards {
+            padding: 3em;
+            {#border: 2px solid red#}
+        }
+            .main_page_problems_categories_card {
+                margin: 1em;
+                width: 16em; height: 16em;
+                display: inline-block;
+                {#display: inline;#}
+                position: relative;
+            }
+    </style>
+
+
+
+    <h1 class="pt-4 pb-2 mb-4 border-bottom">
+        Приветствуем в qq-job!
+    </h1>
+    <div class="row">
+        <h3 class="mb-4 col-8">
+            Здесь можно найти актуальные на сегодняшний день вопросы с собеседований в разлиные IT компании.
+            <br>
+            <br>
+            Пока оптимизированно для питончьих разработчиков ¯\_(ツ)_/¯
+        </h3>
+        <h5 class="mb-5 offset-md-3 col-9 float-right ">
+            Вы можете начать свою подготовку в одной из категорий или по всем вопросам сразу.
+            <br>
+            <br>
+            Не прыгай сильно выше головы, не конкурируй с сеньором если джун.
+            <br>
+            <br>
+            Не забывай писать сюда свои вопросы.
+
+        </h5>
+        <h2 class="mb-5 col-8">
+            Скорее выбирай тему и начинай мотать на ус!
+        </h2>
+    </div>
+    <div class="row justify-content-center bg-secondary main_page_problems_categories_cards mb-5">
+        {% for category in context.categories %}
+            <a href="/problems/{{ category.slug }}/">
+                <div class="card main_page_problems_categories_card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ category.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ category.main_page_card_text }}</h6>
+{#                        <p class="card-text">.</p>#}
+{#                        <a href="{{ url_for('problems') }}">Card link</a>#}
+                    </div>
+
+                </div>
+            </a>
+        {% endfor %}
+            <a href="{{ url_for('problems') }}">
+                <div class="card main_page_problems_categories_card">
+                    <div class="card-body">
+                        <h5 class="card-title">All problems</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">just a great list</h6>
+{#                        <p class="card-text">.</p>#}
+{#                        <a href="{{ url_for('problems') }}">Card link</a>#}
+                    </div>
+                </div>
+            </a>
+
+    </div>
+
+
+
+{% endblock %}
+</body>
+</html>

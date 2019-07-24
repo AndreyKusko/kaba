@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+        <meta charset="utf-8">
+        <title>qq-job</title>
+</head>
+<body>
+{% extends "base.html" %}
+{% block content %}
+
+
+
+    <style>
+        .problems_table_div {
+            padding:2em
+        }
+        .problems_create_new_problem_btn {
+            {#height: 1em;#}
+            {#padding:2em#}
+        }
+    </style>
+
+<div class="row d-flex justify-content-center mt-3">
+
+    <div class="col-9 col-lg-9 col-md-10 col-sm-12 pt-4 border">
+        <div class="mb-4 border-bottom">
+            <h1 class="">
+                {{ context.problem.title }}
+            </h1>
+        </div>
+        <div class="pb-3 mb-3 ">
+            {{ context.problem.text }}
+        </div>
+
+        <h4 class="pb-1 border-bottom">
+            Ответ
+        </h4>
+        <div class="pb-2 mb-4 border-bottom">
+            {% if context.problem.answer %}
+                {{ context.problem.answer }}
+            {% endif %}
+        </div>
+
+        <h4 class="pb-1 border-bottom">
+            Области знаний
+        </h4>
+        <div class="pb-2 mb-4 border-bottom">
+            {% if context.problem.knowledge %}
+                {{ context.problem.knowledge }}
+            {% endif %}
+        </div>
+
+        <h4 class="pb-1 border-bottom">
+            Советы
+        </h4>
+        <div class="pb-2 mb-4 border-bottom">
+            {% if context.problem.advises %}
+                {{ context.problem.advises }}
+            {% endif %}
+        </div>
+
+
+
+
+    </div>
+
+
+    <div class="col-3 col-lg-3 col-md-2 col-sm-0"
+         style="
+             background: repeating-linear-gradient(
+                  45deg,
+                  #bc8a20,
+                  #8d6e2b 10px,
+                  #000000 10px,
+                  #000000 20px
+                );
+            opacity: 0.5;
+        "
+    >
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}
+</body>
+</html>

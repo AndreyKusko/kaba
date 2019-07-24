@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+        <meta charset="utf-8">
+        <title>qq-job</title>
+</head>
+<body>
+{% extends "base.html" %}
+{% block content %}
+
+
+
+    <style>
+        .problems_table_div {
+            padding:2em
+        }
+        .problems_create_new_problem_btn {
+            {#height: 1em;#}
+            {#padding:2em#}
+        }
+    </style>
+
+<div class="row d-flex justify-content-center mt-3">
+
+
+    <div class="col-9 col-lg-9 col-md-10 col-sm-12 pt-4 border">
+        <div class="mb-5">
+            <h1 class="">
+                {% if context.category %}
+                    <span style="text-decoration: underline;">{{ context.category.title }}</span>
+                    problems here!
+                {% else %}
+                    All problems you choose!
+                {% endif %}
+            </h1>
+        </div>
+
+        <div class="mb-5 d-block pb-2">
+{#            <a#}
+{#                    class="#}
+{#                    btn btn-primary float-right#}
+{#                    problems_create_new_problem_btn#}
+{#                "#}
+{#                    href="#" role="button">#}
+            <button type="button" class="btn btn-lg btn-primary float-right problems_create_new_problem_btn" disabled>
+                Create new problem
+            </button>
+{#            </a>#}
+        </div>
+
+        <div
+                class="col-12 mt-2"
+                style="
+                        {#border: 2px solid red;#}
+                        padding: 1em  0;
+                        height: 4em;
+                        "
+        >
+            <span class="badge badge-pill badge-primary ">
+                {{ context.all_problems_qty }} - At all
+            </span>
+            <span class="badge badge-pill badge-success ">
+                {{ context.junior_problems_qty }} - Junior
+            </span>
+            <span class="badge badge-pill badge-warning ">
+                {{ context.middle_problems_qty }} - Middle
+            </span>
+            <span class="badge badge-pill badge-danger ">
+                {{ context.senior_problems_qty }} -  Senior
+            </span>
+            <span class="badge badge-pill badge-primary " style="background: darkviolet">
+                {{ context.legend_problems_qty }} - Legend
+            </span>
+            <span class="badge badge-pill badge-dark ">
+                {{ context.insane_problems_qty }} - Insane
+            </span>
+
+            <button type="button" class="btn btn-dark float-right" disabled>
+                Random question
+            </button>
+
+        </div>
+
+        <table
+                class="
+                    col-12
+                    mt-2
+                    table table-striped table-hover table-bordered
+                "
+        >
+            {#    thead-light or .thead-dark#}
+
+            <thead class="thead-dark ">
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">Level</th>
+                <th scope="col">Question</th>
+                <th scope="col">Frequency</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for problem in context.problems %}
+                <tr class='pointer-events' onclick="window.location='/problem/{{ problem.id }}/'">
+                    <th scope="row">
+{#                        {% if problem.number %}#}
+{#                            {{ problem.number }}#}
+{#                        {% endif %}#}
+                        {{ problem.id }}
+                    </th>
+                    <td>
+                        {% if problem.level %}
+                            {{ problem.level }}
+                        {% endif %}
+                    </td>
+
+                        <td>
+                            <a href="/problem/{{ problem.id }}/">
+                                {{ problem.title }}
+                            </a>
+                        </td>
+                    <td>
+{#                        frequency#}
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+    <div class="col-3 col-lg-3 col-md-2 col-sm-0"
+         style="
+             background: repeating-linear-gradient(
+                  45deg,
+                  #bc8a20,
+                  #8d6e2b 10px,
+                  #000000 10px,
+                  #000000 20px
+                );
+            opacity: 0.5;
+        "
+    >
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}
+</body>
+</html>

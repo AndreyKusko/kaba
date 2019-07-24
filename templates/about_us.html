@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+        <meta charset="utf-8">
+        <title>qq-job</title>
+</head>
+<body>
+{% extends "base.html" %}
+{% block content %}
+
+
+
+    <style>
+        .main_page_problems_categories_cards {
+            padding: 3em;
+            {#border: 2px solid red#}
+        }
+            .main_page_problems_categories_card {
+                margin: 1em;
+                width: 16em; height: 16em;
+                display: inline-block;
+                {#display: inline;#}
+                position: relative;
+            }
+    </style>
+
+
+
+    <h1 class="pt-4 pb-2 mb-5 border-bottom">
+        Хотите узнать о нас больше?
+    </h1>
+    <div class="row mb-5 pt-0 pb-4 border-bottom">
+        <div class="col-3 ">
+            <img class="float-right" src="{{ url_for('static', filename='images/logo1.png') }}"
+                     style="
+                        width:12em;
+                        margin:-0.3em 0;
+                        background-color: #FFFFFF;
+                        padding: 0.1em;
+                        border-radius:3em;
+                    "
+                >
+        </div>
+        <div class="col-4" >
+            <h4 class="mt-5"> - I can code parseltongue but can't see sharp.</h4>
+        </div>
+    </div>
+    <div class="row mb-5 pb-5 border-bottom">
+
+        <h3 class=" col-5">
+            Этот проект создается двумя разработчиками, которые чертовски устали от собеседований
+            и хотят упростить этап подготовки.
+        </h3>
+        <div class="col-3.4 mr-1 ">
+            <img src="{{ url_for('static', filename='images/developer_first.png') }}"
+                 style="
+                    width:15em;
+                    background-color: #FFFFFF;
+                    padding: 0.1em;
+                    {#border-radius:3em;#}
+                "
+            >
+        </div>
+        <div class="col-3.4 ml-1 ">
+            <img src="{{ url_for('static', filename='images/developer_alpha.png') }}"
+                 style="
+                    width:15em;
+                    background-color: #FFFFFF;
+                    padding: 0.1em;
+                    {#border-radius:3em;#}
+                "
+            >
+        </div>
+    </div>
+    <h4 class="mb-5 pb-5 border-bottom">
+        Однажды все ищут работу и сталкиваются с огромным количеством конфузящих, забытых, новых вопросов.
+        <br>
+        <br>
+        Мы хотим агрегировать здесь вопросы, ответы, рекомендации и лучшие практики в
+        прохождении собеседований на разработчика.
+    </h4>
+
+
+    <p class="mb-5 pb-5">
+        Feel free to contact us any time. We will answer you as fast as we can.
+        <br>
+        Telegram: @andrey_kusko, @Shtyrnyev
+        <br>
+        Email: a.kusko@list.ru, ???
+
+    </p>
+
+
+
+
+{% endblock %}
+</body>
+</html>
