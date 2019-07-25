@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import render_template
-from app import app
-
 from app import app, db
 from models import Category, Problem
-from flask import Flask, Response
-
-import os
 
 
 def get_common_data():
@@ -20,11 +15,10 @@ def get_common_data():
         'middle_problems_qty': len(problems_.filter_by(level=2).all()),
         'senior_problems_qty': len(problems_.filter_by(level=3).all()),
         'legend_problems_qty': len(problems_.filter_by(level=4).all()),
-        'insane_problems_qty': len(problems_.filter(Problem.level==4).all())
+        'insane_problems_qty': len(problems_.filter(Problem.level >= 4).all())
     }
 
     return data
-
 
 
 @app.route('/<path:path>')
@@ -36,6 +30,7 @@ def static_file(path):
 def main_page():
     context = get_common_data()
     return render_template('main_page.html', context=context)\
+
 
 @app.route('/about_us')
 @app.route('/about_us/')
@@ -97,5 +92,58 @@ def problem(id):
 @app.route('/subscribe/')
 def subscribe():
     return
+
+
+
+# save first category
+#     from app import models, db
+#     category = models.Category(title='Python', text='qwe', main_page_card_text='asd')
+#     category
+#     >>> <Category id None>
+#     db.session.add(category)
+#     db.session.commit()
+#     category
+#     >>> <Category id 1>
+
+
+def slugify(text):
+    import re
+    pattern = r'[^\w+\-]'
+    return re.sub(pattern, '-', text.lower())
+
+
+def asd():
+    print('qwe()')
+    from app import app, db
+    from models import Category, Problem
+
+
+    problems_ = Problem.query.all()
+    for problem_ in problems_:
+        if problem_.theme:
+            category_title = problem_.theme
+            category_slug = slugify(category_title)
+            print('category_title=', category_title, 'category_slug=', category_slug)
+            category = Category.query.filter_by(slug=category_slug).first()
+            if not category:
+                category = Category(title=category_title)
+                db.session.add(category)
+                db.session.commit()
+            p = Problem.query.filter_by(id=problem_.id).first()
+            p.category_id = category.id
+            p.theme = ''
+            db.session.commit()
+
+
+
+
+
+
+
+
+
+
+
+
 
 

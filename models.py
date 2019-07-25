@@ -54,6 +54,8 @@ class Problem(db.Model):
     answer = db.Column(db.Text)
     knowledge = db.Column(db.Text)
     advises = db.Column(db.Text)
+    theme = db.Column(db.Text)
+    code = db.Column(db.Text)
 
     def __init__(self, *args, **kwargs):
         super(Problem, self).__init__(*args, **kwargs)
