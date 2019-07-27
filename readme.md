@@ -63,8 +63,24 @@ Use `apt-get` for Linux)
 
 
     pip install -r requirements.txt
-        
+    
+    (
+        flask_alchemydumps багается, ннужно поменять импорт
+        ToDo: обновить до новой версии библиотеку, где не этого бага нет
+    )
+        nano /root/kaba/venv/lib/python3.6/site-packages/flask_alchemydumps/__init__.py
+        поменяй
+        >>>  from flask.ext.script import Manager  ->  from flasl_script import Manager
 
+(Если 1 раз)
+
+    export APP_SETTINGS="config.DevelopmentConfig"
+    python manage.py db init
+python manage.py db init
+
+python manage.py db migrate
+
+python manage.py db upgrade
 
 
 # temporary code (do not touch pls)
@@ -84,7 +100,6 @@ flask run
 https://flask.palletsprojects.com/en/1.0.x/quickstart/#debug-mode
 export FLASK_ENV=development
 or 
-
 python app.py
 
 pip install psycopg2 Flask-SQLAlchemy Flask-Migrate Flask-Script
@@ -171,3 +186,12 @@ def asd():
 
 https://pypi.org/project/Flask-AlchemyDumps/0.0.3/
 
+
+
+import psycopg2
+try:
+    conn = psycopg2.connect("host=localhost dbname=kaba_db")
+    conn.close();
+except psycopg2.OperationalError as ex:
+    print("Connection failed: {0}".format(ex))
+    
