@@ -103,7 +103,6 @@ def create_problem(id_=None):
         pass
     form = ProblemForm()
     if request.method == 'POST':
-
         title = request.form['title']
         category_id = request.form.get('category', None)
         if not category_id:

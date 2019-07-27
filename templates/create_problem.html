@@ -45,9 +45,7 @@
                         {% for category in context.categories %}
                             <option
                                     value="{{ category.id }}"
-                                    {% if category.id == context.problem.category_id %}
-                                        selected
-                                    {% endif %}
+
                             >
                                 {{ category.title }}
                             </option>
