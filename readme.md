@@ -186,12 +186,12 @@ def asd():
 
 https://pypi.org/project/Flask-AlchemyDumps/0.0.3/
 
-
-
-import psycopg2
-try:
-    conn = psycopg2.connect("host=localhost dbname=kaba_db")
-    conn.close();
-except psycopg2.OperationalError as ex:
-    print("Connection failed: {0}".format(ex))
     
+postgres -u kaba_db_user -p InterViewsMakeMe8annaDie -h localhost -P 5432 -D kaba_db
+
+
+https://starkandwayne.com/blog/using-a-postgres-uri-with-psql/
+psql postgres://kaba_db_user:InterViewsMakeMe8annaDie@localhost:5432/kaba_db
+
+mysql -u socialdatahk -p 12345 -h dev-1.dorg.cc -P 3306 -D socialdatahk
+
