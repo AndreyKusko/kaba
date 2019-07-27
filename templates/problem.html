@@ -23,44 +23,50 @@
 <div class="row d-flex justify-content-center mt-3">
 
     <div class="col-9 col-lg-9 col-md-10 col-sm-12 pt-4 border">
+    <div class="mb-5 d-block pb-2">
+        <a
+                class="
+                        btn btn-primary float-right
+                        problems_create_new_problem_btn
+                    "
+                href="{{ url_for('edit_problem', id_=context.problem.id) }}"
+                role="button">
+
+            Edit problem
+        </a>
+    </div>
         <div class="mb-4 border-bottom">
             <h1 class="">
                 {{ context.problem.title }}
             </h1>
         </div>
-        <div class="pb-3 mb-3 ">
-            {{ context.problem.text }}
-        </div>
+        <div class="pb-3 mb-3 border-bottom"  style="white-space: pre-wrap"
+            >{{ context.problem.text }}</div>
 
-        <h4 class="pb-1 border-bottom">
-            Ответ
-        </h4>
-        <div class="pb-2 mb-4 border-bottom">
-            {% if context.problem.answer %}
-                {{ context.problem.answer }}
-            {% endif %}
-        </div>
+        {% if context.problem.answer %}
+            <h4 class="pb-1 border-bottom">
+                Ответ
+            </h4>
+            <div class="pb-2 mb-4 border-bottom" style="white-space: pre-wrap"
+                >{{ context.problem.answer }}</div>
+        {% endif %}
 
-        <h4 class="pb-1 border-bottom">
-            Области знаний
-        </h4>
-        <div class="pb-2 mb-4 border-bottom">
-            {% if context.problem.knowledge %}
-                {{ context.problem.knowledge }}
-            {% endif %}
-        </div>
+        {% if context.problem.knowledge %}
+            <h4 class="pb-1 border-bottom">
+                Области знаний
+            </h4>
+            <div class="pb-2 mb-4 border-bottom" style="white-space: pre-wrap"
+                >{{ context.problem.knowledge }}</div>
+        {% endif %}
 
-        <h4 class="pb-1 border-bottom">
-            Советы
-        </h4>
-        <div class="pb-2 mb-4 border-bottom">
-            {% if context.problem.advises %}
-                {{ context.problem.advises }}
-            {% endif %}
-        </div>
+        {% if context.problem.knowledge %}
+            <h4 class="pb-1 border-bottom">
+                Советы
+            </h4>
 
-
-
+            <div class="pb-2 mb-4 border-bottom" style="white-space: pre-wrap"
+                >{{ context.problem.knowledge }}</div>
+        {% endif %}
 
     </div>
 

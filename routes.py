@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-from flask import render_template
+from flask import render_template, redirect, request, url_for
 from app import app, db
 from models import Category, Problem
+from forms import ProblemForm
+from  sqlalchemy.sql.expression import func, select
+
 
 
 def get_common_data():
-
     problems_ = Problem.query
 
     data = {
@@ -47,7 +49,7 @@ def problems(slug=None):
 
     if slug:
         category = Category.query.filter_by(slug=slug).first()
-        problems_ = Problem.query.filter_by(category_id=category.id).all()
+        problems_ = Problem.query.filter_by(category_id=category.id).order_by(Problem.created).all()
 
         context['category'] = category
     else:
@@ -59,28 +61,79 @@ def problems(slug=None):
     return render_template('problems.html', context=context)
 
 
-@app.route('/create_problem/')
-def create_problem(slug=None):
-    # result = Result(
-    #     url=url,
-    #     result_all=raw_word_count,
-    #     result_no_stop_words=no_stop_words_count
-    # )
-    # db.session.add(result)
-    # db.session.commit()
+@app.route('/edit_problem/<id_>/', methods=['GET', 'POST'])
+def edit_problem(id_):
+    problem_ = Problem.query.filter_by(id=id_).first()
+    form = ProblemForm(
+        title=problem_.title,
+        text=problem_.text,
+        category=problem_.category_id,
+        answer=problem_.answer,
+        knowledge=problem_.knowledge,
+        advises=problem_.advises 
+    )
 
+    if request.method == 'POST':
+        problem_.title = request.form['title']
+        category_id = request.form.get('category', None)
+        if not category_id:
+            category = Category(title='Unknown category')
+            category_id = category.id
+
+        problem_.category_id = category_id
+        problem_.text = request.form['text']
+        problem_.knowledge = request.form.get('knowledge', None)
+        problem_.answer = request.form.get('answer', None)
+        # NotBug: i speccialy do not use here try except so user can find problem. it is prototype any way
+
+        db.session.commit()
+        return redirect( url_for('problem', id_=problem_.id) )
     context = {
-        'slug': slug
+        'form': form,
+        'problem': problem_
+    }
+    context.update(get_common_data())
+
+    return render_template('edit_problem.html', context=context)
+
+
+@app.route('/create_problem/', methods=['GET', 'POST'])
+def create_problem(id_=None):
+    if id_:
+        pass
+    form = ProblemForm()
+    if request.method == 'POST':
+
+        title = request.form['title']
+        category_id = request.form.get('category', None)
+        if not category_id:
+            category = Category(title='Unknown category')
+            category_id = category.id
+        text = request.form['text']
+        knowledge = request.form.get('knowledge', None)
+        answer = request.form.get('answer', None)
+        # NotBug: i speccialy do not use here try except so user can find problem. we got here prototype any way
+        problem_ = Problem(title=title, category_id=category_id, text=text, knowledge=knowledge, answer=answer)
+        db.session.add(problem_)
+        db.session.commit()
+        return redirect( url_for('problem', id_=problem_.id))
+    context = {
+        'form': form
     }
     context.update(get_common_data())
 
     return render_template('create_problem.html', context=context)
 
 
-@app.route('/problem/<id>')
-@app.route('/problem/<id>/')
-def problem(id):
-    problem_ = Problem.query.filter_by(id=id).first()
+@app.route('/problem/')
+@app.route('/problem/<id_>')
+@app.route('/problem/<id_>/')
+def problem(id_=None):
+
+    if request.args.get('random', None):
+        problem_ = Problem.query.order_by(func.random()).first()
+    else:
+        problem_ = Problem.query.filter_by(id=id_).first()
     context = {
         'problem': problem_
     }
@@ -92,58 +145,5 @@ def problem(id):
 @app.route('/subscribe/')
 def subscribe():
     return
-
-
-
-# save first category
-#     from app import models, db
-#     category = models.Category(title='Python', text='qwe', main_page_card_text='asd')
-#     category
-#     >>> <Category id None>
-#     db.session.add(category)
-#     db.session.commit()
-#     category
-#     >>> <Category id 1>
-
-
-def slugify(text):
-    import re
-    pattern = r'[^\w+\-]'
-    return re.sub(pattern, '-', text.lower())
-
-
-def asd():
-    print('qwe()')
-    from app import app, db
-    from models import Category, Problem
-
-
-    problems_ = Problem.query.all()
-    for problem_ in problems_:
-        if problem_.theme:
-            category_title = problem_.theme
-            category_slug = slugify(category_title)
-            print('category_title=', category_title, 'category_slug=', category_slug)
-            category = Category.query.filter_by(slug=category_slug).first()
-            if not category:
-                category = Category(title=category_title)
-                db.session.add(category)
-                db.session.commit()
-            p = Problem.query.filter_by(id=problem_.id).first()
-            p.category_id = category.id
-            p.theme = ''
-            db.session.commit()
-
-
-
-
-
-
-
-
-
-
-
-
 
 

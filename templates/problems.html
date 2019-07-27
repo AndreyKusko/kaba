@@ -24,6 +24,7 @@
 
 
     <div class="col-9 col-lg-9 col-md-10 col-sm-12 pt-4 border">
+
         <div class="mb-5">
             <h1 class="">
                 {% if context.category %}
@@ -36,25 +37,23 @@
         </div>
 
         <div class="mb-5 d-block pb-2">
-{#            <a#}
-{#                    class="#}
-{#                    btn btn-primary float-right#}
-{#                    problems_create_new_problem_btn#}
-{#                "#}
-{#                    href="#" role="button">#}
-            <button type="button" class="btn btn-lg btn-primary float-right problems_create_new_problem_btn" disabled>
-                Create new problem
-            </button>
-{#            </a>#}
+            <a
+                    class="
+                        btn btn-primary float-right
+                        problems_create_new_problem_btn
+                    "
+                    href="{{ url_for('create_problem') }}"
+                    role="button">
+                Create problem
+            </a>
         </div>
 
         <div
                 class="col-12 mt-2"
                 style="
-                        {#border: 2px solid red;#}
-                        padding: 1em  0;
-                        height: 4em;
-                        "
+                    padding: 1em  0;
+                    height: 4em;
+                "
         >
             <span class="badge badge-pill badge-primary ">
                 {{ context.all_problems_qty }} - At all
@@ -75,9 +74,16 @@
                 {{ context.insane_problems_qty }} - Insane
             </span>
 
-            <button type="button" class="btn btn-dark float-right" disabled>
-                Random question
-            </button>
+            <a
+                    class="
+                        btn btn-dark float-right
+                        problems_create_new_problem_btn
+                    "
+                    href="{{ url_for('problem', random=True) }}"
+                    role="button"
+            >
+                Random
+            </a>
 
         </div>
 

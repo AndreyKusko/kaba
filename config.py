@@ -26,5 +26,6 @@ class DevelopmentConfig(Configuration):
     DEBUG = True
 
 
+
 class TestingConfig(Configuration):
     TESTING = True

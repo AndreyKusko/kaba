@@ -28,7 +28,7 @@
                 Создание проблемы
             </h1>
         </div>
-        <form class="mb-5 pb-3 d-block" action="{{ url_for('create_problem') }}" method="post" novalidate>
+        <form class="mb-5 pb-3 d-block" action="{{ url_for('edit_problem', id_=context.problem.id) }}" method="post" novalidate>
             <p>
 {#                Заоголовок<br>#}
 {#                {{ context.form.title.label }}<br>#}

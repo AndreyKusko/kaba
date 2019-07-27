@@ -62,14 +62,8 @@ save first category
 
 
 
-Создание всей хурмы разом
+Создание Категорий на основе вопросов
 ```
-def slugify(text):
-    import re
-    pattern = r'[^\w+\-]'
-    return re.sub(pattern, '-', text.lower())
-
-
 def asd():
     from app import app, db
     from models import Category, Problem
@@ -107,6 +101,7 @@ def asd():
         else:
             problem_.category_id = anknown_category.id
             db.session.commit()
+
 ```
 
 https://pypi.org/project/Flask-AlchemyDumps/0.0.3/

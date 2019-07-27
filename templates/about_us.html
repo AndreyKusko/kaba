@@ -30,10 +30,10 @@
         Хотите узнать о нас больше?
     </h1>
     <div class="row mb-5 pt-0 pb-4 border-bottom">
-        <div class="col-3 ">
+        <div class="offset-md-2 col-3 ">
             <img class="float-right" src="{{ url_for('static', filename='images/logo1.png') }}"
                      style="
-                        width:12em;
+                        width:100%;
                         margin:-0.3em 0;
                         background-color: #FFFFFF;
                         padding: 0.1em;
@@ -46,39 +46,47 @@
         </div>
     </div>
     <div class="row mb-5 pb-5 border-bottom">
-
-        <h3 class=" col-5">
-            Этот проект создается двумя разработчиками, которые чертовски устали от собеседований
-            и хотят упростить этап подготовки.
+        <h3 class="col-5 col-lg-5 col-md-12 col-sm-12">
+            Этот проект создается двумя разработчиками.
+            Однажды все ищут работу и сталкиваются с огромным количеством конфузящих, забытых, новых вопросов.
+            Мы хотим упростить структурировать этап подготовки к собеседованиям.
         </h3>
-        <div class="col-3.4 mr-1 ">
-            <img src="{{ url_for('static', filename='images/developer_first.png') }}"
-                 style="
-                    width:15em;
-                    background-color: #FFFFFF;
-                    padding: 0.1em;
-                    {#border-radius:3em;#}
-                "
-            >
-        </div>
-        <div class="col-3.4 ml-1 ">
-            <img src="{{ url_for('static', filename='images/developer_alpha.png') }}"
-                 style="
-                    width:15em;
-                    background-color: #FFFFFF;
-                    padding: 0.1em;
-                    {#border-radius:3em;#}
-                "
-            >
+        <div class="col-7 col-lg-7 col-md-12 col-sm-12">
+            <div class="row">
+                <div class="col-5 mr-1 ">
+                    <img src="{{ url_for('static', filename='images/developer_first.png') }}"
+                         style="
+                            width:100%;
+                            background-color: #FFFFFF;
+                            padding: 0.1em;
+                            {#border-radius:3em;#}
+                        "
+                    >
+                </div>
+                <div class="col-5 ml-1 ">
+                    <img src="{{ url_for('static', filename='images/developer_alpha.png') }}"
+                         style="
+                            width:100%;
+                            background-color: #FFFFFF;
+                            padding: 0.1em;
+                            {#border-radius:3em;#}
+                        "
+                    >
+                </div>
+            </div>
         </div>
     </div>
-    <h4 class="mb-5 pb-5 border-bottom">
-        Однажды все ищут работу и сталкиваются с огромным количеством конфузящих, забытых, новых вопросов.
-        <br>
-        <br>
-        Мы хотим агрегировать здесь вопросы, ответы, рекомендации и лучшие практики в
-        прохождении собеседований на разработчика.
-    </h4>
+    <div class="mb-5 pb-5 border-bottom">
+        <h5>
+
+        </h5>
+        <h5>
+            Здесь должны агрегироваться вопросы, ответы, рекомендации и лучшие практики в
+            прохождении собеседований на разработчика.
+            Таким образом новому человеку в разработке будет легче сформировать/вспомнить
+            "Джентельменский" набор знаний для устройства на новую работу рзарбаотчиком.
+        </h5>
+    </div>
 
 
     <p class="mb-5 pb-5">

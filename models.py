@@ -1,11 +1,6 @@
 from app import db
 from datetime import datetime
-import re
-
-
-def slugify(text):
-    pattern = r'[^\w+\-]'
-    return re.sub(pattern, '-', text.lower())
+from utils import slugify
 
 
 class Category(db.Model):
@@ -49,13 +44,15 @@ class Problem(db.Model):
     number = db.Column(db.Integer(), unique=True)
     level = db.Column(db.Integer(),)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
-    title = db.Column(db.String(256), unique=True)
+    title = db.Column(db.String(512), unique=True)
     text = db.Column(db.Text)
-    answer = db.Column(db.Text)
+    answer = db.Column(db.Text)  # todo: answers might me another model
+                                    # here also might be associations
     knowledge = db.Column(db.Text)
     advises = db.Column(db.Text)
-    theme = db.Column(db.Text)
-    code = db.Column(db.Text)
+    theme = db.Column(db.Text)  # todo: this is temporary field to add categories automatically
+
+    created = db.Column(db.DateTime, default=datetime.now)
 
     def __init__(self, *args, **kwargs):
         super(Problem, self).__init__(*args, **kwargs)
