@@ -1,11 +1,76 @@
 
 # welcome fool! 
-congratulations! you find the source code
+congratulations! you find the source code of Kaban project
+
+
+Проект работатет на 3 питоне 
+
+
+# Fast commands
+
+    pip freeze > requirements.txt
+
+    python manage.py db init
+    
+    python manage.py db migrate
+    
+    python manage.py db upgrade
+
+# Start 
+
+https://medium.com/ymedialabs-innovation/deploy-flask-app-with-nginx-using-gunicorn-and-supervisor-d7a93aa07c18
+
+
+Use `brew install` for OsX)
+Use `apt-get` for Linux)
 
 
 
+Установить системные пакеты (server only)
 
+    sudo apt-get install software-properties-common
+    sudo apt-add-repository universe
+    sudo apt-get update
+    sudo apt-get install nginx supervisor python3-dev libpq-dev python-pip python-virtualenv postgresql postgresql-contrib git -y
+        
+    pip install psycopg2 Flask-SQLAlchemy Flask-Migrate Flask-Script
+
+
+Установить и настроить PostgreSQL
+
+    sudo apt-get install postgresql -y
+    sudo su - postgres
+    psql
+    CREATE DATABASE kaba_db;
+    CREATE USER kaba_db_user WITH PASSWORD 'InterViewsMakeMe8annaDie';
+    GRANT ALL PRIVILEGES ON DATABASE kaba_db TO kaba_db_user;
+    \q
+    exit
+
+
+
+Клонировать проект (удостоверься, что в кабинете есть ssh ключ для сервака)
+
+    git clone git@gitlab.com:Kusko/kaba.git
+
+Создать и активировать виртуальное окружение 
+    
+    virtualenv --no-site-packages -p python3 venv
+    source venv/bin/activate
+
+
+установить зависимости и мигрировать миграции
+
+
+    pip install -r requirements.txt
+        
+
+
+
+# temporary code (do not touch pls)
 ```
+
+
 virtualenv -p python3 venv
 
 pip freeze > requirements.txt
