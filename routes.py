@@ -66,6 +66,7 @@ def edit_problem(id_):
     problem_ = Problem.query.filter_by(id=id_).first()
     form = ProblemForm(
         title=problem_.title,
+        level=problem_.level,
         text=problem_.text,
         category=problem_.category_id,
         answer=problem_.answer,
@@ -75,6 +76,7 @@ def edit_problem(id_):
 
     if request.method == 'POST':
         problem_.title = request.form['title']
+        problem_.level = request.form['level']
         category_id = request.form.get('category', None)
         if not category_id:
             category = Category(title='Unknown category')
@@ -104,6 +106,7 @@ def create_problem(id_=None):
     form = ProblemForm()
     if request.method == 'POST':
         title = request.form['title']
+        level = request.form.get('level', '')
         category_id = request.form.get('category', None)
         if not category_id:
             category = Category(title='Unknown category')
@@ -112,7 +115,7 @@ def create_problem(id_=None):
         knowledge = request.form.get('knowledge', None)
         answer = request.form.get('answer', None)
         # NotBug: i speccialy do not use here try except so user can find problem. we got here prototype any way
-        problem_ = Problem(title=title, category_id=category_id, text=text, knowledge=knowledge, answer=answer)
+        problem_ = Problem(title=title, level=level, category_id=category_id, text=text, knowledge=knowledge, answer=answer)
         db.session.add(problem_)
         db.session.commit()
         return redirect( url_for('problem', id_=problem_.id))

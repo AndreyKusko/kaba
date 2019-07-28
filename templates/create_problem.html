@@ -30,10 +30,13 @@
         </div>
         <form class="mb-5 pb-3 d-block" action="{{ url_for('create_problem') }}" method="post" novalidate>
             <p>
-{#                Заоголовок<br>#}
 {#                {{ context.form.title.label }}<br>#}
                 {{ context.form.title.label(class='control-label') }}<br>
                 {{ context.form.title(class='form-control') }}
+            </p>
+            <p>
+                {{ context.form.level.label(class='control-label') }}<br>
+                {{ context.form.level(class='form-control') }}
             </p>
 
             <div class="">
@@ -66,6 +69,10 @@
             <p>
                 {{ context.form.answer.label(class='control-label') }}
                 {{ context.form.answer(class='form-control') }}
+            </p>
+            <p>
+                {{ context.form.advises.label(class='control-label') }}
+                {{ context.form.advises(class='form-control') }}
             </p>
 
             <button type="submit" class="btn btn-primary float-right">

@@ -39,6 +39,8 @@ class Problem(db.Model):
     # todo: make category many to many
     # todo: add i met this question filed (button)
     # todo: make hashtags for categories
+    # todo: add displaying of categories on problem page
+    # todo: add level on problem page
 
     id = db.Column(db.Integer, primary_key=True)
     number = db.Column(db.Integer(), unique=True)
@@ -67,3 +69,5 @@ class Problem(db.Model):
 
 # todo: separate questions by positions. Exsamples: web-developer, back-end developer, data science...
 # todo: add companies that answer this question (this might be anonymous?)
+# todo: add displaying problem category near problem
+

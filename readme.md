@@ -3,7 +3,7 @@
 congratulations! you find the source code of Kaban project
 
 
-Проект работатет на 3 питоне 
+Проект работатет на Python 3, Flask и Bootstrap.
 
 
 # Fast commands
