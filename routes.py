@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, redirect, request, url_for
-from app import app, db
-from models import Category, Problem
-from forms import ProblemForm
-from  sqlalchemy.sql.expression import func, select
+from flask import redirect, render_template, request, url_for
+from sqlalchemy.sql.expression import func, select
 
+from app import app, db
+from forms import ProblemForm
+from models import Category, Problem
 
 
 def get_common_data():
@@ -147,5 +147,3 @@ def problem(id_=None):
 @app.route('/subscribe/')
 def subscribe():
     return
-
-

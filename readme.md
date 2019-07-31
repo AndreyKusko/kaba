@@ -1,7 +1,9 @@
+# Kaba project! 
+congratulations! you find the source code of Kaba project
 
-# welcome fool! 
-congratulations! you find the source code of Kaban project
+http://95.213.237.8/
 
+Это прототип, для теста идеи.
 
 Проект работатет на Python 3, Flask и Bootstrap.
 
@@ -158,7 +160,10 @@ nginx
 
 
 
-# temporary code (do not touch pls)
+
+
+
+# temporary code below (do not touch pls)
 ```
 
 

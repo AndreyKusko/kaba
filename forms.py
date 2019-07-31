@@ -1,5 +1,5 @@
 
-from wtforms import Form, StringField, TextAreaField, IntegerField, SelectField
+from wtforms import Form, IntegerField, SelectField, StringField, TextAreaField
 
 
 class ProblemForm(Form):
