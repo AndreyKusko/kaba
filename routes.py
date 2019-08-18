@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import redirect, render_template, request, url_for
-from sqlalchemy.sql.expression import func, select
+from sqlalchemy.sql.expression import func
 
 from app import app, db
 from forms import ProblemForm
@@ -9,7 +9,6 @@ from models import Category, Problem
 
 def get_common_data():
     problems_ = Problem.query
-
     data = {
         'categories': Category.query.all(),
         'all_problems_qty': len(problems_.all()),
@@ -19,7 +18,6 @@ def get_common_data():
         'legend_problems_qty': len(problems_.filter_by(level=4).all()),
         'insane_problems_qty': len(problems_.filter(Problem.level >= 4).all())
     }
-
     return data
 
 
@@ -57,7 +55,6 @@ def problems(slug=None):
     
     context['problems'] = problems_
     context.update(get_common_data())
-
     return render_template('problems.html', context=context)
 
 
@@ -87,7 +84,6 @@ def edit_problem(id_):
         problem_.knowledge = request.form.get('knowledge', None)
         problem_.answer = request.form.get('answer', None)
         # NotBug: i speccialy do not use here try except so user can find problem. it is prototype any way
-
         db.session.commit()
         return redirect( url_for('problem', id_=problem_.id) )
     context = {
@@ -114,11 +110,11 @@ def create_problem(id_=None):
         text = request.form['text']
         knowledge = request.form.get('knowledge', None)
         answer = request.form.get('answer', None)
-        # NotBug: i speccialy do not use here try except so user can find problem. we got here prototype any way
+        # NotBug: i specialy do not use here try except so user can find problem. we got here prototype any way
         problem_ = Problem(title=title, level=level, category_id=category_id, text=text, knowledge=knowledge, answer=answer)
         db.session.add(problem_)
         db.session.commit()
-        return redirect( url_for('problem', id_=problem_.id))
+        return redirect(url_for('problem', id_=problem_.id))
     context = {
         'form': form
     }
